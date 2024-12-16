@@ -84,13 +84,16 @@
     .content.active {
         display: block;
     }
-    .flourish-container {
-        position: relative;
-        padding-bottom: 75%; /* Adjusted to make more space for charts */
-        height: 0;
+    .flourish-wrapper {
+        width: 800px; /* Set desired width */
+        height: 600px; /* Set desired height */
+        margin: 0 auto; /* Center horizontally */
         overflow: hidden;
+        position: relative;
+        border: 1px solid #ccc; /* Optional: Add a border for clarity */
+        border-radius: 8px;
     }
-    .flourish-embed {
+    .flourish-wrapper .flourish-embed {
         position: absolute;
         top: 0;
         left: 0;
@@ -128,28 +131,28 @@
 
 <div class="main-content">
     <div id="home" class="content active">
-        <div class="flourish-container">
+        <div class="flourish-wrapper">
             <div class="flourish-embed" data-src="story/2682602"></div>
             <script src="https://public.flourish.studio/resources/embed.js"></script>
         </div>
     </div>
 
     <div id="combined" class="content">
-        <div class="flourish-container">
+        <div class="flourish-wrapper">
             <div class="flourish-embed" data-src="story/2685017"></div>
             <script src="https://public.flourish.studio/resources/embed.js"></script>
         </div>
     </div>
 
     <div id="ov_10_164" class="content">
-        <div class="flourish-container">
+        <div class="flourish-wrapper">
             <div class="flourish-embed" data-src="story/2685129"></div>
             <script src="https://public.flourish.studio/resources/embed.js"></script>
         </div>
     </div>
 
     <div id="cs_10_175" class="content">
-        <div class="flourish-container">
+        <div class="flourish-wrapper">
             <div class="flourish-embed" data-src="story/2685163"></div>
             <script src="https://public.flourish.studio/resources/embed.js"></script>
         </div>
@@ -158,4 +161,5 @@
 
 </body>
 </html>
+
 
