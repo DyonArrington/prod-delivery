@@ -12,36 +12,57 @@
         color: #333;
         background-color: #f4f4f9;
     }
-    .tabs {
-        display: flex;
-        justify-content: center;
+    .sidebar {
+        position: fixed;
+        top: 20px;
+        left: 10px;
+        z-index: 1000;
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .dropbtn {
         background-color: #0073e6;
-        padding: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .tab {
-        padding: 12px 25px;
-        cursor: pointer;
         color: white;
-        font-size: 18px;
-        font-weight: bold;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
         border-radius: 5px;
-        margin: 0 5px;
-        transition: background-color 0.3s ease, transform 0.2s ease;
     }
-    .tab:hover {
+    .dropbtn:hover {
         background-color: #005bb5;
-        transform: scale(1.05);
     }
-    .tab.active {
-        background-color: #004494;
-        border-bottom: 3px solid #f4f4f9;
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        left: 0;
+        background-color: white;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .dropdown-content a {
+        color: #333;
+        padding: 10px 20px;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+    }
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+    .dropdown:hover .dropdown-content {
+        display: block;
     }
     .content {
         display: none;
         padding: 20px;
         background-color: white;
-        margin: 20px;
+        margin: 40px 20px;
         border-radius: 8px;
         text-align: center;
     }
@@ -50,24 +71,26 @@
     }
     .flourish-container {
         position: relative;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        padding-bottom: 75%; /* Adjusted to make more space for charts */
         height: 0;
         overflow: hidden;
+    }
+    .flourish-embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 </style>
 <script>
     function openTab(tabName) {
-        var i, tabcontent, tabs;
+        var i, tabcontent;
         tabcontent = document.getElementsByClassName("content");
-        tabs = document.getElementsByClassName("tab");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].classList.remove("active");
         }
-        for (i = 0; i < tabs.length; i++) {
-            tabs[i].classList.remove("active");
-        }
         document.getElementById(tabName).classList.add("active");
-        event.currentTarget.classList.add("active");
     }
     document.addEventListener("DOMContentLoaded", function() {
         openTab('home');
@@ -76,11 +99,16 @@
 </head>
 <body>
 
-<div class="tabs">
-    <div class="tab active" onclick="openTab('home')">Home</div>
-    <div class="tab" onclick="openTab('combined')">Combined Data</div>
-    <div class="tab" onclick="openTab('ov_10_164')">Oro Valley 10-164</div>
-    <div class="tab" onclick="openTab('cs_10_175')">Countryside 10-175</div>
+<div class="sidebar">
+    <div class="dropdown">
+        <button class="dropbtn">Data Set</button>
+        <div class="dropdown-content">
+            <a href="#" onclick="openTab('home')">Home</a>
+            <a href="#" onclick="openTab('combined')">Combined Data</a>
+            <a href="#" onclick="openTab('ov_10_164')">Oro Valley 10-164</a>
+            <a href="#" onclick="openTab('cs_10_175')">Countryside 10-175</a>
+        </div>
+    </div>
 </div>
 
 <div id="home" class="content active">
@@ -114,7 +142,3 @@
 </body>
 </html>
 
-
-
-</body>
-</html>
