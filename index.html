@@ -17,15 +17,25 @@
         justify-content: center;
         background-color: #0073e6;
         padding: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .tab {
-        padding: 10px 20px;
+        padding: 12px 25px;
         cursor: pointer;
         color: white;
-        font-size: 16px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 5px;
+        margin: 0 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
     }
     .tab:hover {
         background-color: #005bb5;
+        transform: scale(1.05);
+    }
+    .tab.active {
+        background-color: #004494;
+        border-bottom: 3px solid #f4f4f9;
     }
     .content {
         display: none;
@@ -39,18 +49,32 @@
         display: block;
     }
     .flourish-container {
-        text-align: center;
-        margin-top: 20px;
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+    }
+    .flourish-embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 </style>
 <script>
     function openTab(tabName) {
-        var i, tabcontent;
+        var i, tabcontent, tabs;
         tabcontent = document.getElementsByClassName("content");
+        tabs = document.getElementsByClassName("tab");
         for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
         }
-        document.getElementById(tabName).style.display = "block";
+        for (i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        event.currentTarget.classList.add("active");
     }
     document.addEventListener("DOMContentLoaded", function() {
         openTab('home');
@@ -60,7 +84,7 @@
 <body>
 
 <div class="tabs">
-    <div class="tab" onclick="openTab('home')">Home</div>
+    <div class="tab active" onclick="openTab('home')">Home</div>
     <div class="tab" onclick="openTab('combined')">Combined Data</div>
     <div class="tab" onclick="openTab('ov_10_164')">Oro Valley 10-164</div>
     <div class="tab" onclick="openTab('cs_10_175')">Countryside 10-175</div>
@@ -68,34 +92,31 @@
 
 <div id="home" class="content active">
     <div class="flourish-container">
-        <div class="flourish-embed" data-src="story/2682602"></div>
-        <script src="https://public.flourish.studio/resources/embed.js"></script>
+        <iframe src="https://public.flourish.studio/visualisation/2682602/" frameborder="0" scrolling="no"></iframe>
     </div>
 </div>
 
 <div id="combined" class="content">
     <div class="flourish-container">
-        <div class="flourish-embed" data-src="story/2685017"></div>
-        <script src="https://public.flourish.studio/resources/embed.js"></script>
+        <iframe src="https://public.flourish.studio/visualisation/2685017/" frameborder="0" scrolling="no"></iframe>
     </div>
 </div>
 
 <div id="ov_10_164" class="content">
     <div class="flourish-container">
-        <div class="flourish-embed" data-src="story/2685129"></div>
-        <script src="https://public.flourish.studio/resources/embed.js"></script>
+        <iframe src="https://public.flourish.studio/visualisation/2685129/" frameborder="0" scrolling="no"></iframe>
     </div>
 </div>
 
 <div id="cs_10_175" class="content">
     <div class="flourish-container">
-        <div class="flourish-embed" data-src="story/2685163"></div>
-        <script src="https://public.flourish.studio/resources/embed.js"></script>
+        <iframe src="https://public.flourish.studio/visualisation/2685163/" frameborder="0" scrolling="no"></iframe>
     </div>
 </div>
 
 </body>
 </html>
+
 
 
 </body>
